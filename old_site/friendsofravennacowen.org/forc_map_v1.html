@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title></title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.3.1/mapbox-gl.js'></script>
+	<link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.3.1/mapbox-gl.css' rel='stylesheet' />
+	<link href="css/forc-style.css" rel="stylesheet">
+    <style>
+        body { margin:0; padding:0; }
+        #map { position:absolute; top:0; bottom:0; width:100%; }
+		.mapboxgl-popup {
+		max-width: 400px;
+		font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+}
+</style>
+</head>
+<body>
+
+<script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.1/mapbox-gl-geocoder.min.js'></script>
+<link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.1/mapbox-gl-geocoder.css' type='text/css' />
+
+<div id='map'></div>
+
+<div class='legend'>
+	<div class='legend-title'>Ravenna-Cowen Historic District</div>
+		<div class='legend-scale'>
+			  <ul class='legend-labels'>
+				<li><span style='outline:#444141;'></span>Ravenna Cowen Historic District</li>
+				<li><span style='background:#f4cfcf;'></span>Parcels</li>
+				<li><span style='background:#c8a2a2;'></span>Buildings</li>
+			  </ul>
+		</div>
+		<div class='legend-source'>Source: <a href="http://www.friendsofravennacowen.org/"  target="_blank">Friends of Ravenna-Cowen</a></div>
+		<div class='map-credit'>Map design by <a href="http://www.coregis.net/"  target="_blank">CORE GIS</a></div>
+	</div>
+</div>
+
+<script>
+mapboxgl.accessToken = 'pk.eyJ1IjoiY29yZS1naXMiLCJhIjoiaUxqQS1zQSJ9.mDT5nb8l_dWIHzbnOTebcQ';
+
+//set bounds to Ravenna Cowen
+var bounds = [
+		[-122.348771,47.660011], // southwest coords
+		[-122.269034,47.688244] // northeast coords
+	];
+
+var map = new mapboxgl.Map({
+    container: 'map', // container id
+    style: 'mapbox://styles/core-gis/ck0cjf6av320m1cmnvcdazatb', // stylesheet location
+    center: [-122.308903,47.674119], // starting position [lng, lat]
+    zoom: 16, // starting zoom
+	maxBounds:  bounds // sets bounds as max
+
+});
+
+map.on('load', function () {
+
+	map.addSource('parcels',{
+		type:'vector',
+		url:'mapbox://core-gis.0qn16ci8'
+		});
+		//Add a map layer for all the parcels
+
+	map.addLayer({
+		"id":"parcel_lines",
+		"type":"fill",
+		"source":"parcels",
+		"source-layer":"forc_parcels_v2-9uxbga",
+		"layout":{		},
+		"paint":{
+			'fill-color': 'rgba(200, 100, 240, 0)',
+            'fill-outline-color': 'rgba(200, 100, 240, 0)'
+			}
+	});
+});
+
+// When a click event occurs on a feature in the states layer, open a popup at the
+    // location of the click, with description HTML from its properties.
+    map.on('click', 'parcel_lines', function (e) {
+        new mapboxgl.Popup()
+            .setLngLat(e.lngLat)
+            .setHTML(fillpopup(e.features[0].properties))
+            .addTo(map);
+		console.log(e.features[0].properties);
+    });
+
+	 // Change the cursor to a pointer when the mouse is over the parcel layer.
+    map.on('mouseenter', 'parcel_lines', function () {
+        map.getCanvas().style.cursor = 'pointer';
+    });
+
+    // Change it back to a pointer when it leaves.
+    map.on('mouseleave', 'parcel_lines', function () {
+        map.getCanvas().style.cursor = '';
+    });
+
+	function fillpopup(data){
+		// clear existing popups
+		document.querySelectorAll('.mapboxgl-popup').forEach(e => e.remove());
+		var html = "";
+		html = html + "<span class='varname'>Address: </span> <span class='attribute'>" + data.SiteHouseN + " " + data.SiteStreet +"</span>";
+		html = html + "<br>"
+		html = html + "<span class='varname'>Year Built: </span> <span class='attribute'>" + data.Date_built + "</span>";
+		html = html + "<br>"
+		html = html + "<span class='varname'>Property Information: </span> <span class='attribute'>" + "<a href=\"http://friendsofravennacowen.org/downloads/continuation/" + data.cs_url + ".pdf" + "\" target=\"_blank\" title=\"Opens in a new window\">" + data.cs_url + "</a>" + "</span>";
+		return html;
+		//this will return the string to the calling function
+	}
+
+	function clearpopups(){
+		document.querySelectorAll('.mapboxgl-popup').forEach(
+			e => e.remove()
+		);
+	}
+
+	//Add the Mapbox geocoder to allow search by address
+	map.addControl(new MapboxGeocoder({
+		accessToken: mapboxgl.accessToken,
+		mapboxgl: mapboxgl
+	}));
+
+	//Add an on-mousedown event to the search suggestions to clear existing popups before doing a new search
+	// This approach assumes that there's only one matching element
+	document.querySelectorAll('.suggestions-wrapper')[0].addEventListener(
+		"mousedown",
+		clearpopups
+	);
+	// Add the same action on submit of the search form, to handle people who just type and press return
+	document.querySelectorAll('.mapboxgl-ctrl-geocoder--input')[0].addEventListener(
+		"keydown",
+		function(e){
+			if (e.which == 13 || e.keyCode == 13) {
+				clearpopups();
+			}
+		}
+	);
+
+</script>
+
+</body>
+</html>
