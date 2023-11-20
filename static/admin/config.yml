@@ -1,0 +1,18 @@
+backend:
+  name: github
+  repo: sdesmond46/forc-hugo
+media_folder: static/img
+public_folder: /img
+collections:
+  - name: 'board_members'
+    label: 'Board Members'
+    folder: 'content/board_members'
+    create: true
+    slug: '{{name}}'
+    editor:
+      preview: false
+    fields:
+      - { label: 'Name', name: 'name', widget: 'string' }
+      - { label: 'Role', name: 'role', widget: 'string' }
+      - { label: 'hidden', name: 'hidden', widget: 'boolean' }
+      - { label: 'Body', name: 'body', widget: 'markdown' }
