@@ -2,3 +2,4 @@ baseURL = 'https://example.org/'
 languageCode = 'en-us'
 title = 'Friends of Ravenna-Cowen'
 theme = 'ananke'
+staticDir = ["static", "old_site"]
