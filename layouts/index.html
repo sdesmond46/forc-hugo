@@ -272,6 +272,11 @@
       <div class="col-lg-8 mx-auto">
         <h2>Board Biographies</h2>
 
+        {{ range where .Site.RegularPages "Type" "board_members" }}
+        <h4>{{ .Params.name }} – {{ .Params.role }}</h4>
+        {{ .Content }}
+        {{ end }}
+
         <h4>Larry E Johnson, AIA – President</h4>
         <p>Larry E. Johnson, AIA is a Seattle native and is committed preserving this region&#39;s
           cultural heritage. He has a diverse background in community and regional planning,
