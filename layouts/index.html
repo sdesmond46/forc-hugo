@@ -39,6 +39,8 @@
   <!-- Custom font kit for Dyer Arts & Crafts -->
   <link rel="stylesheet" href="{{ "friendsofravennacowen.org/css/font_stylesheet.css" | relURL }}" type="text/css" charset="utf-8" />
 
+  <link rel="stylesheet" href="{{ "vendor/lightbox/css/lightbox.min.css" | relURL }}" type="text/css" charset="utf-8" />
+
   <!-- favicon code -->
   <link rel="apple-touch-icon" sizes="180x180" href="{{ "friendsofravennacowen.org/apple-touch-icon.png" | relURL }}">
   <link rel="icon" type="image/png" sizes="32x32" href="{{ "friendsofravennacowen.org/favicon-32x32.png" | relURL }}">
@@ -291,13 +293,24 @@
           <div>
             <h4>{{ .Params.title }}</h4>
             {{ .Content }}
-            {{ range .Params.download_links }}
-              <p>
-                <a href="{{ .file | relURL }}" class="btn btn-default btn-lg" target="_blank">
-                  {{ .download_text }}
+
+            <div>
+              {{ range .Params.images }}
+                <a href="{{ .image | relURL }}" data-title="{{ .caption }}" data-lightbox="{{ .caption }}">
+                  <img src="{{ .image | relURL }}" style="width: 200px; margin: 10px;"></img>
                 </a>
-              </p>
-            {{ end }}
+              {{ end }}
+            </div>
+
+            <div>
+              {{ range .Params.download_links }}
+                <p>
+                  <a href="{{ .file | relURL }}" class="btn btn-default btn-lg" target="_blank">
+                    {{ .download_text }}
+                  </a>
+                </p>
+              {{ end }}
+            </div>
 
           </div>
           
@@ -534,6 +547,14 @@
   <!-- Custom scripts for this template -->
   <script src="{{ "friendsofravennacowen.org/js/grayscale.min.js" | relURL }}"></script>
 
+  <script src="{{ "vendor/lightbox/js/lightbox.min.js" | relURL }}"></script>
+
+  <script>
+    lightbox.option({
+      'resizeDuration': 200,
+      'wrapAround': true
+    })
+</script>
 </body>
 
 </html>
