@@ -273,22 +273,22 @@ footer {
   }
 }
 
-::-moz-selection {
-  background: #fcfcfc;
-  background: fade-out(white, .8);
-  text-shadow: none;
-}
+// ::-moz-selection {
+//   background: #fcfcfc;
+//   background: fade-out(white, .8);
+//   text-shadow: none;
+// }
 
-::selection {
-  background: #fcfcfc;
-  background: fade-out(white, .8);
-  text-shadow: none;
-}
+// ::selection {
+//   background: #fcfcfc;
+//   background: fade-out(white, .8);
+//   text-shadow: none;
+// }
 
-img::selection {
-  background: transparent;
-}
+// img::selection {
+//   background: transparent;
+// }
 
-img::-moz-selection {
-  background: transparent;
-}
+// img::-moz-selection {
+//   background: transparent;
+// }

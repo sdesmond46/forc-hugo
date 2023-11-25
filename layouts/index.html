@@ -291,18 +291,29 @@
 
           {{ range sort (where .Site.RegularPages "Type" "blog_posts") "Params.post_date" "desc" }}
           <div>
-            <h4>{{ .Params.title }}</h4>
+            <h4 class="pb-1 mb-1">
+              {{ .Params.title }}
+            </h4>
+            {{ $date := time.AsTime .Params.post_date }}
+            <p><small>
+              Published {{ $date  | time.Format ":date_medium" }}
+            </small>
+          </p>
             {{ .Content }}
 
-            <div>
+            {{ if .Params.images }}
+            <div class="pb-4 pt-2">
               {{ range .Params.images }}
                 <a href="{{ .image | relURL }}" data-title="{{ .caption }}" data-lightbox="{{ .caption }}">
-                  <img src="{{ .image | relURL }}" style="width: 200px; margin: 10px;"></img>
+                  <img src="{{ .image | relURL }}" style="width: 300px; margin: 10px;"></img>
                 </a>
               {{ end }}
             </div>
+            {{ end }}
 
-            <div>
+
+            {{ if .Params.download_links }}
+            <div class="pb-4 pt-2">
               {{ range .Params.download_links }}
                 <p>
                   <a href="{{ .file | relURL }}" class="btn btn-default btn-lg" target="_blank">
@@ -311,122 +322,11 @@
                 </p>
               {{ end }}
             </div>
+            {{ end }}
 
           </div>
           
           {{ end }}
-
-        <h4>Walking Tour #4</h4>
-        <p>
-            We held our fourth walking tour on Saturday, October 7, 2023. This tour
-            focused on the Ravenna Park, the beautiful park that is adjacent to and
-            south of the District. Larry Johnson led one of two groups for the
-            walking tour. He was assisted by board member Lani Johnson, as well as
-            volunteer Dante Moreno. Board member Francesca Renouard and her husband
-            Steven Pool led the second group, assisted by Dr. Lewis Johnson.
-            Research on the park's history took several months and revealed the
-            location and fate of the once majestic three hundred feet tall fir trees
-            that were found within the park. Master Birder and naturalist Wood
-            Wheeler also gave a presentation on the park's natural history.
-          </p>
-          <div class="row">
-              <div class="col-lg-3"> </div>
-            <div class="col-lg-6">
-              <img src="{{ "friendsofravennacowen.org/img/walk_4_pic_1.jpg" | relURL }}" style="max-width: 100%; margin: 10px;"></img>
-            </div>
-            <div class="col-lg-3"> </div>
-          </div>
-          <p></p>
-
-        <p><a href="{{ "friendsofravennacowen.org/downloads/FORC_Walking_Tour_4.pdf" | relURL }}" class="btn btn-default btn-lg" target="_blank">Download Walking Tour 4</a></p>
-
-          <h4>Walking Tour #3</h4>
-          <p>
-            On Saturday, June 24, FORC hosted the third of our walks through the Historic District. This
-            walking tour covered the easternmost section of the District encompassing the University Place
-            and College plats and portions of the Wade, Wasson, Alder Park, and Ravenna Springs Parks
-            plats, ending up at the Ravenna Commercial District.
-          </p>
-
-          <p><a href="{{ "friendsofravennacowen.org/downloads/FORC_Walking_Tour_3.pdf" | relURL }}" class="btn btn-default btn-lg" target="_blank">Download Walking Tour 3</a></p>
-        
-          <h4>Walking Tour #2—University Scenic Plat</h4>
-          <p>
-            On May 6, 2023, FORC hosted our second historical interest walk through the central section of
-            the Historic District. About 60 neighbors participated with FORC president, Larry E. Johnson,
-            AIA, leading the group and pointing out points of interest along the way.
-          </p>
-          <div class="row">
-            <div class="col-lg-6">
-              <img src="{{ "friendsofravennacowen.org/img/walk_2_pic_1.jpg" | relURL }}" style="max-width: 100%; margin: 10px;"></img>
-            </div>
-            <div class="col-lg-6">
-              <img src="{{ "friendsofravennacowen.org/img/walk_2_pic_2.jpg" | relURL }}" style="max-width: 100%; margin: 10px;"></img>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-lg-6">
-              <img src="{{ "friendsofravennacowen.org/img/walk_2_pic_3.jpg" | relURL }}" style="max-width: 100%; margin: 10px;"></img>
-            </div>
-            <div class="col-lg-6">
-              <img src="{{ "friendsofravennacowen.org/img/walk_2_pic_4.jpg" | relURL }}" style="max-width: 100%; margin: 10px;"></img>
-            </div>
-          </div>
-          <p>
-            You can download Walk #2 <a href="{{ "friendsofravennacowen.org/downloads/FORC_Walking_Tour_2.pdf" | relURL }}" target="_blank">here</a> and take a self-guided tour too. This one covers the middle
-            portion of the Ravenna-Cowen North National Historic District, east of 15th Avenue NE and
-            extending to 20 th Avenue NE.
-          </p>
-          <p><a href="{{ "friendsofravennacowen.org/downloads/FORC_Walking_Tour_2.pdf" | relURL }}" class="btn btn-default btn-lg" target="_blank">Download Walking Tour 2</a></p>
-
-          <h4>Celebration for our Historic Ravenna-Cowen Neighborhood</h4>
-          <p>
-            On October 1, 2022, FORC hosted a celebration of the Ravenna-Cowen Historic District in Cowen Park. Over 50
-            neighbors and 3 local politicians joined in the event.
-          </p>
-          <p>
-            FORC Board President Larry Johnson described the mission of the organization and lead a tour of Cowen Park
-            and the Cowen University Park Platt (east and north of Cowen Park). He highlighted 12 unique, historical
-            features of this area. The event was a great success with many people asking when we will host another tour!
-          </p>
-          <p>
-            Darya Farivar and Dr. Lelach Rave who are running to represent Legislative District 46 in Seattle gave brief
-            remarks on their platform. State Senator Javier Valdez joined on the tour as well.
-          </p>
-          <!-- <div style="display: flex; margin-top: 10px; margin-bottom: 30px;">
-              <img src="{{ "img/walk_1_pic_1.jpg" | relURL }}" width="400" style="margin: 10px;"></img>
-              <img src="{{ "friendsofravennacowen.org/img/walk_1_pic_2.jpg" | relURL }}" width="400" style="margin: 10px;"></img>
-            </div> -->
-          <div class="row">
-            <div class="col-lg-6">
-              <img src="{{ "friendsofravennacowen.org/img/walk_1_pic_1.jpg" | relURL }}" style="max-width: 100%; margin: 10px;"></img>
-            </div>
-            <div class="col-lg-6">
-              <img src="{{ "friendsofravennacowen.org/img/walk_1_pic_2.jpg" | relURL }}" style="max-width: 100%; margin: 10px;"></img>
-            </div>
-          </div>
-
-          <h4>Walking Tour #1—Cowen Park & Cowen’s University Park Plat</h4>
-          <p>
-            You can download Walk 1 <a href="{{ "friendsofravennacowen.org/downloads/FORC_Walking_Tour_1.pdf" | relURL }}" target="_blank">here</a> and take a
-            self-guided tour too. This one covers only the western portion of the Ravenna-Cowen North National Historic
-            District, west of 15th Avenue NE. There’s still much more to see in this section—the tour highlights a few
-            points of interest that you might enjoy seeing.
-          </p>
-          <p><a href="{{ "friendsofravennacowen.org/downloads/FORC_Walking_Tour_1.pdf" | relURL }}" class="btn btn-default btn-lg" target="_blank">Download Walking
-              Tour 1</a></p>
-
-          
-          <h4>National Historic District Street Signs</h4>
-          <p>
-            In late 2018, FORC applied for a City of Seattle Small Sparks grant from the Department of Neighborhoods
-            (DON) to install Historic District street signs. The application was approved in 2019, and the Seattle
-            Department of Transportation (SDOT) installed the signs in February 2020. The signs were paid for by a
-            combination of volunteer time spent by FORC volunteers and matching funds from the Small Sparks grant. The
-            signs are official brown (denoting historic significance) and are mounted on street poles or light poles at
-            12 approved locations that will help identify the Ravenna-Cowen North National Historic District.
-          </p>
-          <p><img src="{{ "friendsofravennacowen.org/img/street_signs.png" | relURL }}" width="400"></img></p>
         </div>
       </div>
     </div>

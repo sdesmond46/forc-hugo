@@ -1,5 +1,6 @@
 ---
 title: "Walking Tour #4"
+post_date: 2023-10-09
 images:
   - image: /img/walk_4_pic_1.jpg
     caption: Tour Group Gathering

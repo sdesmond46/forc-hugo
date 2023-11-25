@@ -26,7 +26,7 @@ collections:
       preview: true
     fields:
       - { label: 'Title', name: 'title', widget: 'string' }
-      - { label: 'Post Date', name: 'post_date', format: "MM/DD/YYYY", widget: 'date' }
+      - { label: 'Post Date', name: 'post_date', format: "YYYY-MM-DD", widget: 'datetime' }
       - { label: 'Post Body', name: 'body', widget: 'markdown' }
       - label: "Images"
         name: "images"
