@@ -1,5 +1,6 @@
 ---
 name: Lani Johnson
 role: Member
+order: 6
 ---
 Lani Johnson strives daily for responsible interaction with our natural and cultural environments. She has been a long-time resident of the Ravenna neighborhood, as well as long-time business owner in the Roosevelt neighborhood. She earned her Master’s in Architecture from the University of Washington, and for over four and a half decades, her professional career included environmental planning consulting services and SEPA/NEPA environmental evaluations. In addition to her professional work and other volunteer activities, Lani has provided many years of volunteer service for Roosevelt neighborhood land use activities, including serving as a past Land Use Chair and a past Vice President of the Roosevelt Neighborhood Association. She also served on the School Design Team (Design Review), Site Council, and Land Use Departure Committee for Roosevelt High School. She lives in the Ravenna-Cowen North National Historic District (along with her husband Larry), and is proud to have contributed her time to its successful nomination.
