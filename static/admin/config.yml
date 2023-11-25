@@ -17,3 +17,38 @@ collections:
       - { label: 'Role', name: 'role', widget: 'string' }
       - { label: 'Body', name: 'body', widget: 'markdown' }
       - { label: 'Order', name: 'order', widget: 'number', description: 'What order the this person should be on the site' }
+  - name: 'blog_posts'
+    label: 'Blog Posts'
+    folder: 'content/blog_posts'
+    create: true
+    slug: '{{title}}'
+    editor:
+      preview: true
+    fields:
+      - { label: 'Title', name: 'title', widget: 'string' }
+      - { label: 'Post Date', name: 'post_date', format: "MM/DD/YYYY", widget: 'date' }
+      - { label: 'Post Body', name: 'body', widget: 'markdown' }
+      - label: "Images"
+        name: "images"
+        widget: "list"
+        summary: '{{fields.caption}}'
+        fields:
+          - label: "Image"
+            name: "image"
+            widget: "image"
+          - name: "caption"
+            label: "Caption"
+            widget: "string"
+        allow_add: true
+      - label: "Download Links"
+        name: "download_links"
+        widget: "list"
+        summary: '{{fields.download_text}}'
+        fields:
+          - label: "File"
+            name: "file"
+            widget: "file"
+          - name: "download_text"
+            label: "Download Button Text"
+            widget: "string"
+        allow_add: true

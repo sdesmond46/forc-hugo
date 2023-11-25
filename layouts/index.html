@@ -287,6 +287,22 @@
         <div class="col-lg-8 mx-auto">
           <h2>News and Events</h2>
 
+          {{ range sort (where .Site.RegularPages "Type" "blog_posts") "Params.post_date" "desc" }}
+          <div>
+            <h4>{{ .Params.title }}</h4>
+            {{ .Content }}
+            {{ range .Params.download_links }}
+              <p>
+                <a href="{{ .file | relURL }}" class="btn btn-default btn-lg" target="_blank">
+                  {{ .download_text }}
+                </a>
+              </p>
+            {{ end }}
+
+          </div>
+          
+          {{ end }}
+
         <h4>Walking Tour #4</h4>
         <p>
             We held our fourth walking tour on Saturday, October 7, 2023. This tour
