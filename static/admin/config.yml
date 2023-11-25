@@ -14,5 +14,4 @@ collections:
     fields:
       - { label: 'Name', name: 'name', widget: 'string' }
       - { label: 'Role', name: 'role', widget: 'string' }
-      - { label: 'hidden', name: 'hidden', widget: 'boolean' }
       - { label: 'Body', name: 'body', widget: 'markdown' }
