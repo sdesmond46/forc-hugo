@@ -1,5 +1,5 @@
 ---
-name: LARRY E JOHNSON, AIA
+name: Larry E Johnson, AIA
 role: PRESIDENT
 hidden: false
 ---
