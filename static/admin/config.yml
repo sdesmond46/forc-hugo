@@ -15,3 +15,4 @@ collections:
       - { label: 'Name', name: 'name', widget: 'string' }
       - { label: 'Role', name: 'role', widget: 'string' }
       - { label: 'Body', name: 'body', widget: 'markdown' }
+      - { label: 'Order', name: 'order', widget: 'number', description: 'What order the this person should be on the site' }
