@@ -304,8 +304,8 @@
             {{ if .Params.images }}
             <div class="pb-4 pt-2">
               {{ range .Params.images }}
-                <a href="{{ .image | relURL }}" data-title="{{ .caption }}" data-lightbox="{{ .caption }}">
-                  <img src="{{ .image | relURL }}" style="width: 300px; margin: 10px;"></img>
+                <a href="{{ substr .image 1 | relURL }}" data-title="{{ .caption }}" data-lightbox="{{ .caption }}">
+                  <img src="{{ substr .image 1 | relURL }}" style="width: 300px; margin: 10px;"></img>
                 </a>
               {{ end }}
             </div>
@@ -316,7 +316,7 @@
             <div class="pb-4 pt-2">
               {{ range .Params.download_links }}
                 <p>
-                  <a href="{{ .file | relURL }}" class="btn btn-default btn-lg" target="_blank">
+                  <a href="{{ substr .file 1 | relURL }}" class="btn btn-default btn-lg" target="_blank">
                     {{ .download_text }}
                   </a>
                 </p>
