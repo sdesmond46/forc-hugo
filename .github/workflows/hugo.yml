@@ -55,6 +55,7 @@ jobs:
           HUGO_ENV: production
         run: |
           hugo \
+            --baseURL https://sdesmond46.github.io/forc-hugo/
             --minify \
             --baseURL "${{ steps.pages.outputs.base_url }}/"
       - name: Upload artifact
